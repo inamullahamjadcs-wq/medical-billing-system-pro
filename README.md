@@ -63,75 +63,16 @@ Press `Cmd + Space` → type `terminal` → press Enter
 
 ## STEP 3 — Setup Backend (Python API)
 
-```bash
-# Go to backend folder
-cd dawn-medical/backend
 
-# Create virtual environment
-python -m venv venv
 
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-
-# On Mac/Linux:
-source venv/bin/activate
-
-# You should see (venv) at the start of your command line
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Copy environment file
-# On Windows:
-copy .env.example .env
-
-# On Mac/Linux:
-cp .env.example .env
-
-# Start the backend server
-uvicorn app.main:app --reload --port 8000
-```
-
-✅ You should see:
-```
-INFO:     Uvicorn running on http://127.0.0.1:8000
-INFO:     Application startup complete.
-```
-
-**Leave this window open!**
-
----
 
 ## STEP 4 — Setup Frontend (React UI)
 
-**Open a NEW command prompt/terminal window**
 
-```bash
-# Go to frontend folder
-cd dawn-medical/frontend
-
-# Install dependencies (first time only, takes 1-2 minutes)
-npm install
-
-# Start the frontend
-npm run dev
-```
-
-✅ You should see:
-```
-  VITE v5.x.x  ready in xxx ms
-  ➜  Local:   http://localhost:3000/
-```
-
----
 
 ## STEP 5 — Open the Software
 
-Open your browser and go to:
-```
-http://localhost:3000
-```
+Open your browser 
 
 🎉 **Dawn Medical Store is now running!**
 
@@ -164,29 +105,7 @@ http://localhost:3000
 3. Fill in: Name, Phone, Address, Credit Limit, Credit Days
 4. Save
 
----
 
-## DAILY USE — How to Start the Software
-
-Every time you want to use the software:
-
-**Step 1:** Start backend
-```bash
-cd dawn-medical/backend
-venv\Scripts\activate        (Windows)
-source venv/bin/activate     (Mac/Linux)
-uvicorn app.main:app --reload --port 8000
-```
-
-**Step 2:** Start frontend (new terminal)
-```bash
-cd dawn-medical/frontend
-npm run dev
-```
-
-**Step 3:** Open browser → http://localhost:3000
-
----
 
 ## KEYBOARD SHORTCUTS (Billing Screen)
 
@@ -242,26 +161,11 @@ npm run dev
 
 ## UPGRADING TO POSTGRESQL (When Ready)
 
-1. Install PostgreSQL: https://www.postgresql.org/download/
-2. Create database:
-   ```sql
-   CREATE DATABASE dawn_medical;
-   ```
-3. Edit `backend/.env`:
-   ```
-   DATABASE_URL=postgresql://postgres:yourpassword@localhost:5432/dawn_medical
-   ```
-4. Restart backend — tables will be created automatically
-
----
 
 ## BACKUP YOUR DATA
 
 ### ✅ Automatic Backup (Built-In!)
-Every time you start via `START_BACKEND.bat`, the system automatically:
-1. Creates a `backups/` folder in root directory
-2. Saves timestamped copy → e.g. `backup_2026-05-05_14-30.db`
-3. Keeps last **30 backups**, deletes older ones
+
 
 **No action needed — backup happens on every startup!**
 
@@ -278,27 +182,9 @@ dawn-medical/
 Copy entire `backups/` folder to USB drive, Google Drive or OneDrive.
 
 ### ⚠️ Recovery
-If something goes wrong: copy latest backup file, rename to `dawn_medical.db`, place in `backend/` folder.
-
----
-
+If something goes wrong: copy latest backup file
 ## TROUBLESHOOTING
 
-### "Module not found" error
-```bash
-pip install -r requirements.txt
-```
-
-### "Port already in use"
-```bash
-# Use different port
-uvicorn app.main:app --reload --port 8001
-# Then change vite.config.js proxy target to 8001
-```
-
-### Frontend not connecting to backend
-- Make sure backend is running on port 8000
-- Check vite.config.js has: `target: 'http://localhost:8000'`
 
 ### Voice not working
 - Use Chrome or Edge browser (Firefox has limited support)
